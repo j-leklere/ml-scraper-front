@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: "Lato", sans-serif;
+}
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: "Lato", sans-serif;
+}
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: "Lato", sans-serif;
+}
+
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #eeeeee;
+}
+
+.main-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.header {
+  height: 100vh;
+  background-color: #fcfcfc;
+  width: 17.5vw;
+  box-shadow: 1rem 0 10rem #eeeeee;
+}
+.header div {
+  height: calc(10vh - 1px);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #dddddd;
+}
+.header div h2 {
+  color: #228be6;
+  font-size: 1.8rem;
+}
+.header nav {
+  height: calc(90vh - 2.4rem);
+  padding: 2.4rem 1rem 0rem;
+}
+.header nav ul li {
+  list-style-type: none;
+}
+.header nav ul li a {
+  display: flex;
+  align-items: center;
+  color: #777777;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s;
+}
+.header nav ul li a:hover {
+  background-color: #f5f5f5;
+}
+.header nav ul li a h3 {
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+.header-icon {
+  color: #228be6;
+  font-size: 2rem;
+  margin-right: 1.5rem;
+}
+.header-icon_saved {
+  margin-right: 2rem;
+}
+.header-icon_logout {
+  color: #ffa500;
+}
+
+.result {
+  width: 100%;
+  height: auto;
+}
+
+.login {
+  height: 100vh;
+  background-color: #dddddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-box {
+  color: #000;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-box h2 {
+  color: #228be6;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.login-box form {
+  display: flex;
+  flex-direction: column;
+}
+.login-box form label {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #228be6;
+  margin-bottom: 0.5rem;
+}
+.login-box form input {
+  width: 45rem;
+  margin-bottom: 1.2rem;
+  padding: 1.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #999999;
+}
+.login-box form button {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.6rem;
+  background-color: #228be6;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  padding: 1.2rem 1.6rem;
+  width: 45rem;
+  border: 1px solid #228be6;
+  transition: all 0.3s;
+}
+.login-box form button:hover {
+  cursor: pointer;
+  color: #228be6;
+  background-color: #ffffff;
+}
+
+.search {
+  height: 100vh;
+  width: calc(82.5vw - 20rem);
+  padding: 5rem 10rem;
+}
+.searchbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  background-color: #fcfcfc;
+  box-shadow: 0 0 10rem #eeeeee;
+  padding: 2.4rem 1.6rem;
+  margin-bottom: 2.4rem;
+}
+.searchbar p {
+  color: #228be6;
+  font-size: 2rem;
+}
+.searchbar-icon {
+  font-size: 2.4rem;
+  color: #228be6;
+  margin-right: 2rem;
+}
+.search .results {
+  width: 100%;
+  border-radius: 1rem;
+  margin-bottom: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.search .results-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+.search .results .result {
+  font-size: 1.4rem;
+  background-color: #fcfcfc;
+  box-shadow: 0 0 10rem #eeeeee;
+  padding: 1.6rem;
+  border-radius: 1rem;
+}
+.search .results .result-price {
+  text-align: left;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #228be6;
+  padding-bottom: 1rem;
+}
+.search .results .result .strong {
+  margin-bottom: 0.5rem;
+}
+.search .results .result-name {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}/*# sourceMappingURL=main.css.map */

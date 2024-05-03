@@ -1,0 +1,92 @@
+.login {
+  height: 100vh;
+
+  background-color: #dddddd;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // &__logo-box {
+  //   position: absolute;
+  //   top: 4rem;
+  //   left: 4rem;
+  // }
+
+  // &__logo {
+  //   height: 3.5rem;
+  // }
+
+  // &__text-box {
+  //   position: absolute;
+  //   top: 40%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   text-align: center;
+  // }
+
+  &-box {
+    color: #000;
+    background-color: #fff;
+    border-radius: 1rem;
+
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      color: $color-main;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: $color-main;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        width: 45rem;
+
+        margin-bottom: 1.2rem;
+        padding: 1.6rem;
+        // border-radius: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #999999;
+      }
+
+      button {
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1.6rem;
+        background-color: $color-main;
+
+        // border-radius: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
+        padding: 1.2rem 1.6rem;
+
+        width: 45rem;
+
+        border: 1px solid $color-main;
+
+        transition: all 0.3s;
+
+        &:hover {
+          cursor: pointer;
+          color: $color-main;
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
+}
