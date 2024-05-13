@@ -14,7 +14,7 @@ export default function Search() {
       if (searchTerm) {
         setLoading(true);
         try {
-          const res = await mainService.scrapBySearchInput(searchTerm, 3);
+          const res = await mainService.scrapBySearchInput(searchTerm, 5);
           console.log(res.data);
           if (res.status === 200) {
             setData(res.data);
@@ -47,7 +47,9 @@ export default function Search() {
           data &&
           data.results && (
             <>
-              <h3 className="results-title">Cantidad de Resultados: {data.results.length}</h3>
+              <h3 className="results-title">
+                Cantidad de Resultados: {data.results.length}
+              </h3>
               <div className="results">
                 {data.results.map((element) => (
                   <Result
