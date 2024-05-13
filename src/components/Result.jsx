@@ -38,7 +38,11 @@ export default function Result({ precio, nombre, url }) {
         <p className="strong">
           <strong>Link:</strong>
         </p>
-        <p className="result-url">{url}</p>
+        <p className="result-url">
+          <a href={url} rel="noopener noreferrer" target="_blank">
+            {url}
+          </a>
+        </p>
       </div>
       <FontAwesomeIcon
         className="result-save--icon"

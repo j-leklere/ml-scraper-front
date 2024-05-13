@@ -1,5 +1,5 @@
 .search {
-  height: 100vh;
+  height: calc(100vh - 20rem);
   width: calc(82.5vw - 20rem);
   padding: 5rem 10rem;
 
@@ -26,6 +26,11 @@
       font-size: 2.4rem;
       color: $color-main;
       margin-right: 2rem;
+      cursor: pointer;
+    }
+
+    &-input {
+      font-size: 1.8rem !important;
     }
   }
 
@@ -78,4 +83,14 @@
       }
     }
   }
+}
+
+.loading-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2rem;
+  color: $color-main;
 }
