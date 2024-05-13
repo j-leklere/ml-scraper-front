@@ -29,6 +29,8 @@ export default function Search() {
     fetchData();
   }, []);
 
+  console.log(data);
+
   return (
     <div className="search">
       <SearchBar />
@@ -37,7 +39,11 @@ export default function Search() {
           <h3 className="results-title">Cantidad de Resultados:</h3>
           <div className="results">
             {data.results.map((element) => (
-              <Result nombre={element.title} precio={element.price} url={element.link} />
+              <Result
+                precio={element.price}
+                nombre={element.title}
+                url={element.link}
+              />
             ))}
           </div>
         </>

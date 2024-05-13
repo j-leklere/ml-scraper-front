@@ -4,7 +4,7 @@
   width: 17.5vw;
   box-shadow: 1rem 0 10rem #eeeeee;
 
-  div {
+  &-user {
     height: calc(10vh - 1px);
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
   nav {
     height: calc(90vh - 2.4rem);
 
-    padding: 2.4rem 1rem 0rem;
+    padding: 1.2rem 1rem 0rem;
 
     ul {
       li {
@@ -56,10 +56,22 @@
   &-icon {
     color: $color-main;
     font-size: 2rem;
-    margin-right: 1.5rem;
 
-    &_saved {
-      margin-right: 2rem;
+    &_container {
+      height: 2.8rem;
+      width: 2.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+    }
+
+    &_user {
+      margin-right: 1.5rem;
+    }
+
+    &_products {
+      color: $color-main;
     }
 
     &_logout {

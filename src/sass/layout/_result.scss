@@ -1,4 +1,16 @@
 .result {
   width: 100%;
   height: auto;
+  position: relative;
+
+  &-save--icon {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+
+    font-size: 2rem;
+    color: $color-main;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
 }
