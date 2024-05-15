@@ -8,13 +8,17 @@ export default function Search() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [quantity, setQuantity] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       if (searchTerm) {
         setLoading(true);
         try {
-          const res = await mainService.scrapBySearchInput(searchTerm, 5);
+          const res = await mainService.scrapBySearchInput(
+            searchTerm,
+            quantity
+          );
           console.log(res.data);
           if (res.status === 200) {
             setData(res.data);
@@ -27,14 +31,15 @@ export default function Search() {
       }
     };
     fetchData();
-  }, [searchTerm]);
+  }, [searchTerm, quantity]);
 
   return (
     <div className="search">
       <SearchBar
-        onSearch={(search) => {
+        onSearch={(search, quantity) => {
           setData(null);
           setSearchTerm(search);
+          setQuantity(quantity);
         }}
       />
       {searchTerm &&

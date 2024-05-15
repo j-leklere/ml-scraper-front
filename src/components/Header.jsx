@@ -1,3 +1,7 @@
+import { Outlet } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { userActions } from "../store/store";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -7,63 +11,121 @@ import {
 import { faBookmark, faUser } from "@fortawesome/free-regular-svg-icons";
 
 export default function Header() {
+  const login = useSelector((state) => state.user.login);
+  const user = useSelector((state) => state.user.actualUser);
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(userActions.logout());
+    dispatch(userActions.setActualUser({ id: "", username: "", password: "" }));
+  };
+
   return (
-    <header className="header">
-      <div className="header-user">
-        <FontAwesomeIcon
-          className="header-icon header-icon_user"
-          icon={faUser}
-        />
-        <h2>Benjamín Sanchez</h2>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">
-              <div className="header-icon_container">
-                <FontAwesomeIcon
-                  className="header-icon"
-                  icon={faMagnifyingGlass}
-                />
-              </div>
-              <h3>Buscar</h3>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <div className="header-icon_container">
-                <FontAwesomeIcon
-                  className="header-icon header-icon_products"
-                  icon={faBoxesStacked}
-                />
-              </div>
-              <h3>Productos</h3>
-            </a>
-          </li>
-          <li>
-            <a href="/">
+    <>
+      <header className="header">
+        {!login && (
+          <div className="header-user">
+            <NavLink
+              to="/login"
+              className="header-user-login"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#f5f5f5" : "",
+                  borderRadius: isActive ? "4px" : "",
+                };
+              }}
+            >
+              <FontAwesomeIcon
+                className="header-icon header-icon_user"
+                icon={faUser}
+              />
+              <h2>Iniciar Sesión</h2>
+            </NavLink>
+          </div>
+        )}
+        {login && (
+          <div className="header-user">
+            <FontAwesomeIcon
+              className="header-icon header-icon_user"
+              icon={faUser}
+            />
+            <h2>{user.username}</h2>
+          </div>
+        )}
+        <nav className="header__nav">
+          <NavLink
+            to="/"
+            className="header__nav-link"
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? "#f5f5f5" : "",
+                borderRadius: isActive ? "4px" : "",
+              };
+            }}
+          >
+            <div className="header-icon_container">
+              <FontAwesomeIcon
+                className="header-icon"
+                icon={faMagnifyingGlass}
+              />
+            </div>
+            Buscar
+          </NavLink>
+          <NavLink
+            to="/products"
+            className="header__nav-link"
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? "#f5f5f5" : "",
+                borderRadius: isActive ? "4px" : "",
+              };
+            }}
+          >
+            <div className="header-icon_container">
+              <FontAwesomeIcon
+                className="header-icon header-icon_products"
+                icon={faBoxesStacked}
+              />
+            </div>
+            Productos
+          </NavLink>
+          {login && (
+            <NavLink
+              to="/saved"
+              className="header__nav-link"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#f5f5f5" : "",
+                  borderRadius: isActive ? "4px" : "",
+                };
+              }}
+            >
               <div className="header-icon_container">
                 <FontAwesomeIcon
                   className="header-icon header-icon_saved"
                   icon={faBookmark}
                 />
               </div>
-              <h3>Guardados</h3> {/* Tanto las busquedas como los productos */}
-            </a>
-          </li>
-          <li>
-            <a href="/">
+              Guardados
+            </NavLink>
+          )}
+          {login && (
+            <div
+              className="header__nav-link header__nav-logout"
+              onClick={logoutHandler}
+            >
               <div className="header-icon_container">
                 <FontAwesomeIcon
                   className="header-icon header-icon_logout"
                   icon={faRightFromBracket}
                 />
               </div>
-              <h3>Cerrar Sesión</h3>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+              Cerrar Sesión
+            </div>
+          )}
+        </nav>
+      </header>
+      <Outlet />
+    </>
   );
 }

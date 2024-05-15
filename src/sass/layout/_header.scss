@@ -1,15 +1,19 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 17.5vw;
   height: 100vh;
   background-color: #fcfcfc;
-  width: 17.5vw;
   box-shadow: 1rem 0 10rem #eeeeee;
 
   &-user {
     height: calc(10vh - 1px);
     display: flex;
+    justify-content: center;
     align-items: center;
 
-    padding: 0 1.5rem;
+    padding: 0 1.9rem;
 
     h2 {
       color: $color-main;
@@ -17,38 +21,50 @@
     }
 
     border-bottom: 1px solid #dddddd;
+
+    &-login {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      padding: 1.4rem 0;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
   }
 
-  nav {
-    height: calc(90vh - 2.4rem);
-
+  &__nav {
+    height: calc(100vh - 10.2rem);
+    display: flex;
+    flex-direction: column;
     padding: 1.2rem 1rem 0rem;
 
-    ul {
-      li {
-        list-style-type: none;
+    &-link {
+      display: flex;
+      align-items: center;
+      color: #777777;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+      font-weight: 400;
+      font-size: 1.6rem;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
 
-        a {
-          display: flex;
-          align-items: center;
-          color: #777777;
-          text-decoration: none;
-          border-radius: 0.5rem;
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
 
-          padding: 1rem;
-          margin-bottom: 0.5rem;
+    &-logout {
+      margin-top: auto;
+      margin-bottom: 0;
 
-          transition: all 0.3s;
-
-          &:hover {
-            background-color: #f5f5f5;
-          }
-
-          h3 {
-            font-weight: 400;
-            font-size: 1.6rem;
-          }
-        }
+      &:hover {
+        cursor: pointer;
       }
     }
   }

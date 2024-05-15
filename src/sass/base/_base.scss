@@ -10,7 +10,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
   font-family: $font-family_main;
   &::before {
     margin: 0;
@@ -42,4 +42,9 @@ body {
   justify-content: center;
 
   overflow: auto;
+}
+
+/////TOSTIFY/////
+.Toastify__toast--error {
+  font-size: 1.6rem !important;
 }

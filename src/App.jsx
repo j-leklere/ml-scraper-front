@@ -1,5 +1,9 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/store";
+
 import Header from "./components/Header";
-// import Login from "./views/Login";
+import Login from "./views/Login";
 import Search from "./views/Search";
 import axios from "axios";
 
@@ -7,13 +11,23 @@ import axios from "axios";
 // axios.defaults.headers.common["Content-Type"] = "application/json";
 axios.defaults.baseURL = "http://127.0.0.1:8000/ml_scraper_app/";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Header />,
+    children: [
+      { path: "/", element: <Search /> },
+      { path: "/login", element: <Login /> },
+      // { path: "*", element: <NotFound /> },
+    ],
+  },
+]);
+
 function App() {
   return (
-    <div className="main-container">
-      {/* <Login /> */}
-      <Header />
-      <Search />
-    </div>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 

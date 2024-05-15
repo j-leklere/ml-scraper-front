@@ -1,10 +1,21 @@
 .search {
-  height: calc(100vh - 20rem);
-  width: calc(82.5vw - 20rem);
+  // height: calc(100vh - 20rem);
+  // width: calc(82.5vw - 20rem);
+  height: 100vh;
+  width: calc(100vw - 17.5vw);
   padding: 5rem 10rem;
+  margin-left: auto;
+
+  &-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
 
   &bar {
-    width: 100%;
+    width: 70%;
 
     display: flex;
     align-items: center;
@@ -32,6 +43,20 @@
     &-input {
       font-size: 1.8rem !important;
     }
+  }
+
+  &-quantity {
+    width: 30%;
+    border-radius: 1rem;
+
+    background-color: #fcfcfc;
+    box-shadow: 0 0 10rem #eeeeee;
+
+    padding: 2.4rem 1.6rem;
+    margin-bottom: 2.4rem;
+
+    display: flex;
+    align-items: center;
   }
 
   .results {
