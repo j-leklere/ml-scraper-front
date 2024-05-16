@@ -10,7 +10,10 @@ export default function SearchBar({ onSearch }) {
   const [quantityInput, setQuantityInput] = useState("");
 
   const handleSearch = () => {
-    if (!quantityInput) {
+    if (!searchInput) {
+      toast.error("Ingrese búsqueda");
+    }
+    if (searchInput && !quantityInput) {
       toast.error("Ingrese cantidad de resultados");
     }
     if (searchInput.trim() !== "" && quantityInput) {
@@ -27,11 +30,6 @@ export default function SearchBar({ onSearch }) {
   return (
     <div className="search-container">
       <div className="searchbar">
-        <FontAwesomeIcon
-          className="searchbar-icon"
-          icon={faMagnifyingGlass}
-          onClick={handleSearch}
-        />
         <Input
           placeholder="Ingrese su búsqueda"
           value={searchInput}
@@ -42,11 +40,6 @@ export default function SearchBar({ onSearch }) {
         />
       </div>
       <div className="search-quantity">
-        <FontAwesomeIcon
-          className="searchbar-icon"
-          icon={faMagnifyingGlass}
-          onClick={handleSearch}
-        />
         <Input
           placeholder="Cantidad de resultados"
           type="number"
@@ -56,6 +49,9 @@ export default function SearchBar({ onSearch }) {
           className="searchbar-input"
           fullWidth
         />
+      </div>
+      <div className="searchbar-icon-container" onClick={handleSearch}>
+        <FontAwesomeIcon className="searchbar-icon" icon={faMagnifyingGlass} />
       </div>
       <ToastContainer position="top-right" autoClose={2000} />
     </div>

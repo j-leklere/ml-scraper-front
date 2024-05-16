@@ -11,22 +11,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+    background-color: rgb(223, 223, 223);
+    box-shadow: 0 0 10rem #eeeeee;
+    margin-bottom: 2rem;
   }
 
   &bar {
     width: 70%;
-
     display: flex;
     align-items: center;
-
     border-radius: 1rem;
-
     background-color: #fcfcfc;
-    box-shadow: 0 0 10rem #eeeeee;
-
     padding: 2.4rem 1.6rem;
-    margin-bottom: 2.4rem;
+    margin-right: 1rem;
 
     p {
       color: $color-main;
@@ -34,10 +33,18 @@
     }
 
     &-icon {
+      &-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        height: 8.288rem;
+        width: 8rem;
+        border-radius: 1rem;
+        background-color: $color-main;
+      }
       font-size: 2.4rem;
-      color: $color-main;
-      margin-right: 2rem;
-      cursor: pointer;
+      color: white;
     }
 
     &-input {
@@ -48,15 +55,11 @@
   &-quantity {
     width: 30%;
     border-radius: 1rem;
-
     background-color: #fcfcfc;
-    box-shadow: 0 0 10rem #eeeeee;
-
-    padding: 2.4rem 1.6rem;
-    margin-bottom: 2.4rem;
-
     display: flex;
     align-items: center;
+    padding: 2.4rem 1.6rem;
+    margin-right: 1rem;
   }
 
   .results {
