@@ -35,20 +35,14 @@ export default function Header() {
                 };
               }}
             >
-              <FontAwesomeIcon
-                className="header-icon header-icon_user"
-                icon={faUser}
-              />
+              <FontAwesomeIcon className="header-icon header-icon_user" icon={faUser} />
               <h2>Iniciar Sesión</h2>
             </NavLink>
           </div>
         )}
         {login && (
           <div className="header-user">
-            <FontAwesomeIcon
-              className="header-icon header-icon_user"
-              icon={faUser}
-            />
+            <FontAwesomeIcon className="header-icon header-icon_user" icon={faUser} />
             <h2>{user.username}</h2>
           </div>
         )}
@@ -64,31 +58,30 @@ export default function Header() {
             }}
           >
             <div className="header-icon_container">
-              <FontAwesomeIcon
-                className="header-icon"
-                icon={faMagnifyingGlass}
-              />
+              <FontAwesomeIcon className="header-icon" icon={faMagnifyingGlass} />
             </div>
             Buscar
           </NavLink>
-          <NavLink
-            to="/products"
-            className="header__nav-link"
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#f5f5f5" : "",
-                borderRadius: isActive ? "4px" : "",
-              };
-            }}
-          >
-            <div className="header-icon_container">
-              <FontAwesomeIcon
-                className="header-icon header-icon_products"
-                icon={faBoxesStacked}
-              />
-            </div>
-            Productos
-          </NavLink>
+          {login && (
+            <NavLink
+              to="/products"
+              className="header__nav-link"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#f5f5f5" : "",
+                  borderRadius: isActive ? "4px" : "",
+                };
+              }}
+            >
+              <div className="header-icon_container">
+                <FontAwesomeIcon
+                  className="header-icon header-icon_products"
+                  icon={faBoxesStacked}
+                />
+              </div>
+              Productos
+            </NavLink>
+          )}
           {login && (
             <NavLink
               to="/saved"
@@ -101,19 +94,13 @@ export default function Header() {
               }}
             >
               <div className="header-icon_container">
-                <FontAwesomeIcon
-                  className="header-icon header-icon_saved"
-                  icon={faBookmark}
-                />
+                <FontAwesomeIcon className="header-icon header-icon_saved" icon={faBookmark} />
               </div>
               Guardados
             </NavLink>
           )}
           {login && (
-            <div
-              className="header__nav-link header__nav-logout"
-              onClick={logoutHandler}
-            >
+            <div className="header__nav-link header__nav-logout" onClick={logoutHandler}>
               <div className="header-icon_container">
                 <FontAwesomeIcon
                   className="header-icon header-icon_logout"

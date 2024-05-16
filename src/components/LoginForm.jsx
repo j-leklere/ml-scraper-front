@@ -15,6 +15,7 @@ export default function LoginForm() {
   const users = [
     { id: 1, username: "Benjamin", password: "benja123" },
     { id: 2, username: "Jero", password: "jero123" },
+    { id: 3, username: "Joa", password: "joa123" },
   ];
 
   const formHandler = (e) => {
@@ -59,11 +60,7 @@ export default function LoginForm() {
           }}
         ></input>
         <label htmlFor="">Contraseña</label>
-        <input
-          htmlFor=""
-          type="password"
-          onKeyUp={(e) => setPassword(e.target.value)}
-        ></input>
+        <input htmlFor="" type="password" onKeyUp={(e) => setPassword(e.target.value)}></input>
         <button>Iniciar Sesión</button>
       </form>
       <ToastContainer position="top-right" autoClose={2000} />
