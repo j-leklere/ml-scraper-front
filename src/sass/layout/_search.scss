@@ -24,7 +24,7 @@
     align-items: center;
     border-radius: 1rem;
     background-color: #fcfcfc;
-    padding: 2.4rem 1.6rem;
+    padding: 2rem 1.2rem;
     margin-right: 1rem;
 
     p {
@@ -38,17 +38,18 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        height: 8.288rem;
+        height: 7.2rem;
         width: 8rem;
         border-radius: 1rem;
         background-color: $color-main;
       }
+      transition: all 0.3;
       font-size: 2.4rem;
-      color: white;
+      color: #fff;
     }
 
     &-input {
-      font-size: 1.8rem !important;
+      font-size: 1.6rem !important;
     }
   }
 
@@ -58,7 +59,7 @@
     background-color: #fcfcfc;
     display: flex;
     align-items: center;
-    padding: 2.4rem 1.6rem;
+    padding: 2rem 1.2rem;
     margin-right: 1rem;
   }
 
