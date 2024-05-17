@@ -2,6 +2,34 @@
   width: 100%;
   height: auto;
   position: relative;
+  font-size: 1.4rem;
+  background-color: #fcfcfc;
+
+  box-shadow: 0 0 10rem #eeeeee;
+
+  padding: 1.6rem;
+  border-radius: 1rem;
+
+  &-price {
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: $color-main;
+
+    padding-bottom: 1rem;
+  }
+
+  .strong {
+    margin-bottom: 0.5rem;
+  }
+
+  &-name {
+    font-size: 1.4rem;
+    margin-bottom: 1.2em;
+  }
+
+  &-url {
+  }
 
   &-save--icon {
     position: absolute;

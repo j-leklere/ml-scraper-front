@@ -35,14 +35,20 @@ export default function Header() {
                 };
               }}
             >
-              <FontAwesomeIcon className="header-icon header-icon_user" icon={faUser} />
+              <FontAwesomeIcon
+                className="header-icon header-icon_user"
+                icon={faUser}
+              />
               <h2>Iniciar Sesión</h2>
             </NavLink>
           </div>
         )}
         {login && (
           <div className="header-user">
-            <FontAwesomeIcon className="header-icon header-icon_user" icon={faUser} />
+            <FontAwesomeIcon
+              className="header-icon header-icon_user"
+              icon={faUser}
+            />
             <h2>{user.username}</h2>
           </div>
         )}
@@ -58,11 +64,14 @@ export default function Header() {
             }}
           >
             <div className="header-icon_container">
-              <FontAwesomeIcon className="header-icon" icon={faMagnifyingGlass} />
+              <FontAwesomeIcon
+                className="header-icon"
+                icon={faMagnifyingGlass}
+              />
             </div>
             Buscar
           </NavLink>
-          {login && (
+          {/* {login && (
             <NavLink
               to="/products"
               className="header__nav-link"
@@ -98,9 +107,12 @@ export default function Header() {
               </div>
               Guardados
             </NavLink>
-          )}
+          )} */}
           {login && (
-            <div className="header__nav-link header__nav-logout" onClick={logoutHandler}>
+            <div
+              className="header__nav-link header__nav-logout"
+              onClick={logoutHandler}
+            >
               <div className="header-icon_container">
                 <FontAwesomeIcon
                   className="header-icon header-icon_logout"

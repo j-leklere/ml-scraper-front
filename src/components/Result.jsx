@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons";
 import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import numberFormatter from "../utils/numberFormatter";
 import mainService from "../services/mainService";
 
-export default function Result({ precio, nombre, url }) {
+export default function Result({ precio, moneda, nombre, url }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const saveProduct = async (data) => {
@@ -29,7 +30,9 @@ export default function Result({ precio, nombre, url }) {
 
   return (
     <div className="result">
-      <h4 className="result-price">${precio}</h4>
+      <h4 className="result-price">
+        {moneda === "US$" ? "US$" : "$"} {numberFormatter(precio)}
+      </h4>
       <div>
         <p className="strong">
           <strong>Nombre: </strong>
@@ -44,11 +47,11 @@ export default function Result({ precio, nombre, url }) {
           </a>
         </p>
       </div>
-      <FontAwesomeIcon
+      {/* <FontAwesomeIcon
         className="result-save--icon"
         icon={isBookmarked ? fasBookmark : farBookmark}
         onClick={toggleBookmark}
-      />
+      /> */}
     </div>
   );
 }

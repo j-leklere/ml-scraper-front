@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import mainService from "../services/mainService";
 import Result from "../components/Result";
+import numberFormatter from "../utils/numberFormatter";
 import { CircularProgress } from "@mui/material";
 
 export default function Search() {
@@ -52,14 +53,27 @@ export default function Search() {
           data &&
           data.results && (
             <>
-              <h3 className="results-title">
-                Cantidad de Resultados: {data.results.length}
-              </h3>
+              <div className="results-data">
+                <h3 className="results-data--title">
+                  Cantidad de Resultados: <span>{data.results.length}</span>
+                </h3>
+                <h3 className="results-data--title">
+                  Precio mín.: <span>${numberFormatter(data.minimo)}</span>
+                </h3>
+                <h3 className="results-data--title">
+                  Precio máx.: <span>${numberFormatter(data.maximo)}</span>
+                </h3>
+                <h3 className="results-data--title">
+                  Precio promedio:{" "}
+                  <span>${numberFormatter(data.promedio)}</span>
+                </h3>
+              </div>
               <div className="results">
                 {data.results.map((element) => (
                   <Result
                     key={element.id}
                     precio={element.price}
+                    moneda={element.currency}
                     nombre={element.title}
                     url={element.link}
                   />
