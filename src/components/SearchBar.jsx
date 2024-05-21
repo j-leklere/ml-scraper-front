@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 export default function SearchBar({ onSearch }) {
   const [searchInput, setSearchInput] = useState("");
   const [quantityInput, setQuantityInput] = useState("");
+  const [actualSearchInput, setActualSearchInput] = useState("");
+  const [actualQuantityInput, setActualQuantityInput] = useState("");
 
   const handleSearch = () => {
     if (!searchInput) {
@@ -16,9 +18,16 @@ export default function SearchBar({ onSearch }) {
     if (searchInput && !quantityInput) {
       toast.error("Ingrese cantidad de resultados");
     }
-    if (searchInput.trim() !== "" && quantityInput) {
+    if (
+      searchInput.trim() !== "" &&
+      quantityInput &&
+      (searchInput !== actualSearchInput ||
+        quantityInput !== actualQuantityInput)
+    ) {
       onSearch(searchInput, quantityInput);
     }
+    setActualSearchInput(searchInput);
+    setActualQuantityInput(quantityInput);
   };
 
   const handleKeyPress = (event) => {

@@ -44,7 +44,10 @@ export default function LoginForm() {
     if (usernameAuth && passwordAuth) {
       dispatch(userActions.login());
       dispatch(userActions.setActualUser(users[userIndex]));
-      navigate("/");
+      toast.success("Login exitoso!");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
   };
 
@@ -60,10 +63,14 @@ export default function LoginForm() {
           }}
         ></input>
         <label htmlFor="">Contraseña</label>
-        <input htmlFor="" type="password" onKeyUp={(e) => setPassword(e.target.value)}></input>
+        <input
+          htmlFor=""
+          type="password"
+          onKeyUp={(e) => setPassword(e.target.value)}
+        ></input>
         <button>Iniciar Sesión</button>
       </form>
-      <ToastContainer position="top-right" autoClose={2000} />
+      <ToastContainer position="top-right" autoClose={1000} />
     </div>
   );
 }
