@@ -9,7 +9,7 @@ import axios from "axios";
 
 // axios.defaults.headers.common["Access-Control-Allow-Methods"] = "GET,PUT,POST,DELETE,PATCH,OPTIONS";
 // axios.defaults.headers.common["Content-Type"] = "application/json";
-axios.defaults.baseURL = "http://127.0.0.1:8000/ml_scraper_app/";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const router = createBrowserRouter([
   {
