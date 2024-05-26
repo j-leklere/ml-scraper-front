@@ -40,6 +40,7 @@ export default function SearchBar({ onSearch }) {
     <div className="search-container">
       <div className="searchbar">
         <Input
+          disableUnderline="true"
           placeholder="Ingrese su búsqueda"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
@@ -50,12 +51,13 @@ export default function SearchBar({ onSearch }) {
       </div>
       <div className="search-quantity">
         <Input
-          placeholder="Cantidad de resultados"
+          disableUnderline="true"
+          placeholder="Cantidad"
           type="number"
           value={quantityInput}
           onKeyUp={handleKeyPress}
           onChange={(e) => setQuantityInput(e.target.value)}
-          className="searchbar-input"
+          className="searchbar-input searchbar-input_number"
           fullWidth
         />
       </div>

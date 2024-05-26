@@ -36,6 +36,19 @@ body {
   background-color: #eeeeee;
 }
 
+input {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
 .main-container {
   display: flex;
   align-items: flex-start;

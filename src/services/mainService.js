@@ -2,13 +2,13 @@ import axios from "axios";
 
 class MainService {
   async scrapBySearchInput(query, resultsLimit) {
-    return axios.get(`/scrape/${query}/${resultsLimit}/`).catch((err) => {
+    return axios.get(`/scrape/${query}/${resultsLimit}`).catch((err) => {
       console.error(err);
     });
   }
 
   async saveProduct(data) {
-    return axios.post("/product/save/", data).catch((err) => {
+    return axios.post("/product/save", data).catch((err) => {
       console.error(err);
     });
   }

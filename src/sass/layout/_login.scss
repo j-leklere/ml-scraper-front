@@ -3,8 +3,6 @@
   width: calc(100vw - 17.5vw);
   margin-left: auto;
 
-  background-color: #dddddd;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +79,7 @@
 
         border: 1px solid $color-main;
 
-        transition: all 0.3s;
+        transition: $transition;
 
         &:hover {
           cursor: pointer;

@@ -1,0 +1,49 @@
+.currency-picker {
+  height: 4rem;
+  width: fit-content;
+  color: $color-main;
+  background-color: #fff;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &_usd {
+    border-radius: 0 1rem 1rem 0;
+  }
+
+  &_ars {
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  &_ars,
+  &_usd {
+    color: $color-main;
+    background-color: #fff;
+    transition: $transition;
+  }
+
+  &_ars:hover,
+  &_usd:hover {
+    cursor: pointer;
+  }
+
+  .selected {
+    color: #fff;
+    background-color: $color-main;
+  }
+
+  div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0 1.8rem;
+
+    h3 {
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+  }
+}

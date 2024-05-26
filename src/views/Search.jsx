@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import mainService from "../services/mainService";
 import Result from "../components/Result";
+import ArsUsd from "../components/ArsUsd";
+
 import numberFormatter from "../utils/numberFormatter";
 import { CircularProgress } from "@mui/material";
 
@@ -10,7 +12,11 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState("ARS");
 
+  const handleCurrencyChange = (currency) => {
+    setSelectedCurrency(currency);
+  };
   useEffect(() => {
     const fetchData = async () => {
       if (searchTerm) {
@@ -54,28 +60,55 @@ export default function Search() {
           data.results && (
             <>
               <div className="results-data">
+                <ArsUsd
+                  onChangeCurrency={handleCurrencyChange}
+                  selectedCurrency={selectedCurrency}
+                />
                 <h3 className="results-data--title">
-                  Cantidad de Resultados: <span>{data.results.length}</span>
+                  Resultados: <span>{data.results.length}</span>
                 </h3>
                 <h3 className="results-data--title">
-                  Precio mín.: <span>${numberFormatter(data.minimo)}</span>
+                  Precio mín.:{" "}
+                  <span>
+                    {(selectedCurrency === "ARS" &&
+                      numberFormatter(data.ars.minimo)) ||
+                      (selectedCurrency === "USD" &&
+                        numberFormatter(data.usd.minimo))}
+                  </span>
                 </h3>
                 <h3 className="results-data--title">
-                  Precio máx.: <span>${numberFormatter(data.maximo)}</span>
+                  Precio máx.:{" "}
+                  <span>
+                    $
+                    {(selectedCurrency === "ARS" &&
+                      numberFormatter(data.ars.maximo)) ||
+                      (selectedCurrency === "USD" &&
+                        numberFormatter(data.usd.maximo))}
+                  </span>
                 </h3>
                 <h3 className="results-data--title">
                   Precio promedio:{" "}
-                  <span>${numberFormatter(data.promedio)}</span>
+                  <span>
+                    $
+                    {(selectedCurrency === "ARS" &&
+                      numberFormatter(data.ars.promedio)) ||
+                      (selectedCurrency === "USD" &&
+                        numberFormatter(data.usd.promedio))}
+                  </span>
                 </h3>
               </div>
               <div className="results">
                 {data.results.map((element) => (
                   <Result
                     key={element.id}
-                    precio={element.price}
+                    precio={
+                      (selectedCurrency === "ARS" && element.priceArs) ||
+                      (selectedCurrency === "USD" && element.priceUsd)
+                    }
                     moneda={element.currency}
                     nombre={element.title}
                     url={element.link}
+                    selectedCurrency={selectedCurrency}
                   />
                 ))}
               </div>

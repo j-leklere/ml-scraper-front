@@ -1,44 +1,65 @@
-.result {
-  width: 100%;
-  height: auto;
-  position: relative;
-  font-size: 1.4rem;
-  background-color: #fcfcfc;
+.result-a {
+  text-decoration: none;
+  transition: $transition;
 
-  box-shadow: 0 0 10rem #eeeeee;
-
-  padding: 1.6rem;
-  border-radius: 1rem;
-
-  &-price {
-    text-align: left;
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: $color-main;
-
-    padding-bottom: 1rem;
+  &:hover {
+    transform: translateX(1.4rem);
   }
 
-  .strong {
-    margin-bottom: 0.5rem;
+  &:visited {
+    .result {
+      &-url {
+        color: rgb(130, 147, 0);
+      }
+    }
   }
 
-  &-name {
+  .result {
+    width: 100%;
+    height: auto;
+    position: relative;
     font-size: 1.4rem;
-    margin-bottom: 1.2em;
-  }
+    background-color: #fcfcfc;
 
-  &-url {
-  }
+    display: flex;
+    align-items: center;
 
-  &-save--icon {
-    position: absolute;
-    top: 1.6rem;
-    right: 1.6rem;
+    gap: 1.6rem;
 
-    font-size: 2rem;
-    color: $color-main;
-    cursor: pointer;
-    transition: all 0.3s;
+    box-shadow: 0 0 10rem #eeeeee;
+
+    padding: 1.6rem;
+    border-radius: 1rem;
+
+    &-price {
+      text-align: left;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: $color-main;
+    }
+
+    &-name {
+      font-size: 1.6rem;
+      color: #000;
+    }
+
+    &-url {
+      position: absolute;
+      right: 2rem;
+      font-size: 1.6rem;
+      align-self: flex-end;
+      color: $color-main;
+    }
+
+    &-save--icon {
+      position: absolute;
+      top: 1.6rem;
+      right: 1.6rem;
+
+      font-size: 2rem;
+      color: $color-main;
+      cursor: pointer;
+      transition: $transition;
+    }
   }
 }
