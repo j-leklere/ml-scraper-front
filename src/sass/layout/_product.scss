@@ -1,4 +1,4 @@
-.search {
+.product {
   // height: calc(100vh - 20rem);
   // width: calc(82.5vw - 20rem);
   height: auto;
@@ -64,42 +64,23 @@
     }
   }
 
-  &-quantity {
-    width: 15%;
-    border-radius: 1rem;
-    background-color: #fcfcfc;
-    display: flex;
-    align-items: center;
-    padding: 1.4rem 1.8rem;
-    margin-right: 1rem;
-  }
-
-  .results {
+  &-details {
     width: 100%;
+    height: auto;
     border-radius: 1rem;
+    padding: 1.6rem;
+    background-color: #fcfcfc;
+    font-size: 1.6rem;
 
-    // box-shadow: 0 0 10rem #dddddd;
+    &--name {
+      font-size: 2rem;
+      margin-bottom: 1.4rem;
+    }
 
-    // margin-bottom: 2.4rem;
+    &--seller {
+    }
 
-    display: flex;
-    flex-direction: column;
-
-    gap: 1.2rem;
-
-    &-data {
-      display: flex;
-      align-items: center;
-      margin-bottom: 2rem;
-      // gap: 1rem;
-
-      &--title {
-        font-size: 1.4rem;
-        padding-right: 1rem;
-        span {
-          color: $color-main;
-        }
-      }
+    &--price {
     }
   }
 }

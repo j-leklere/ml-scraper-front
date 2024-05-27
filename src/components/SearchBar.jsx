@@ -24,7 +24,7 @@ export default function SearchBar({ onSearch }) {
       (searchInput !== actualSearchInput ||
         quantityInput !== actualQuantityInput)
     ) {
-      onSearch(searchInput, quantityInput);
+      onSearch(encodeURIComponent(searchInput), quantityInput);
     }
     setActualSearchInput(searchInput);
     setActualQuantityInput(quantityInput);

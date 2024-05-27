@@ -2,13 +2,29 @@ import axios from "axios";
 
 class MainService {
   async scrapBySearchInput(query, resultsLimit) {
-    return axios.get(`/scrape/${query}/${resultsLimit}`).catch((err) => {
+    return axios
+      .get(`/scrape/${encodeURIComponent(query)}/${resultsLimit}`)
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  async scrapByProductUrl(url) {
+    return axios
+      .get(`/product/scrape/${encodeURIComponent(url)}`)
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  async saveSearchProduct(data) {
+    return axios.post("/product-search/save", data).catch((err) => {
       console.error(err);
     });
   }
 
-  async saveProduct(data) {
-    return axios.post("/product/save", data).catch((err) => {
+  async saveOwnProduct(data) {
+    return axios.post("/product-own/save", data).catch((err) => {
       console.error(err);
     });
   }

@@ -4,6 +4,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+
+const animationProps = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { type: "spring", stiffness: 260, damping: 20 },
+};
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -52,7 +59,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="login-box">
+    <motion.div className="login-box" {...animationProps}>
       <h2>Inicio de Sesión</h2>
       <form onSubmit={formHandler}>
         <label htmlFor="">Usuario</label>
@@ -71,6 +78,6 @@ export default function LoginForm() {
         <button>Iniciar Sesión</button>
       </form>
       <ToastContainer position="top-right" autoClose={1000} />
-    </div>
+    </motion.div>
   );
 }

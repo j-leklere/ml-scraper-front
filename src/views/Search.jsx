@@ -6,6 +6,13 @@ import ArsUsd from "../components/ArsUsd";
 
 import numberFormatter from "../utils/numberFormatter";
 import { CircularProgress } from "@mui/material";
+import { motion } from "framer-motion";
+
+const animationProps = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { type: "spring", stiffness: 260, damping: 20 },
+};
 
 export default function Search() {
   const [data, setData] = useState(null);
@@ -17,6 +24,7 @@ export default function Search() {
   const handleCurrencyChange = (currency) => {
     setSelectedCurrency(currency);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       if (searchTerm) {
@@ -41,80 +49,83 @@ export default function Search() {
   }, [searchTerm, quantity]);
 
   return (
-    <div className="search">
-      <SearchBar
-        onSearch={(search, quantity) => {
-          setData(null);
-          setSearchTerm(search);
-          setQuantity(quantity);
-        }}
-      />
-      {searchTerm &&
-        (loading ? (
-          <div className="loading-container">
-            <p>Cargando resultados...</p>
-            <CircularProgress size={24} />
-          </div>
-        ) : (
-          data &&
-          data.results && (
-            <>
-              <div className="results-data">
-                <ArsUsd
-                  onChangeCurrency={handleCurrencyChange}
-                  selectedCurrency={selectedCurrency}
-                />
-                <h3 className="results-data--title">
-                  Resultados: <span>{data.results.length}</span>
-                </h3>
-                <h3 className="results-data--title">
-                  Precio mín.:{" "}
-                  <span>
-                    {(selectedCurrency === "ARS" &&
-                      numberFormatter(data.ars.minimo)) ||
-                      (selectedCurrency === "USD" &&
-                        numberFormatter(data.usd.minimo))}
-                  </span>
-                </h3>
-                <h3 className="results-data--title">
-                  Precio máx.:{" "}
-                  <span>
-                    $
-                    {(selectedCurrency === "ARS" &&
-                      numberFormatter(data.ars.maximo)) ||
-                      (selectedCurrency === "USD" &&
-                        numberFormatter(data.usd.maximo))}
-                  </span>
-                </h3>
-                <h3 className="results-data--title">
-                  Precio promedio:{" "}
-                  <span>
-                    $
-                    {(selectedCurrency === "ARS" &&
-                      numberFormatter(data.ars.promedio)) ||
-                      (selectedCurrency === "USD" &&
-                        numberFormatter(data.usd.promedio))}
-                  </span>
-                </h3>
-              </div>
-              <div className="results">
-                {data.results.map((element) => (
-                  <Result
-                    key={element.id}
-                    precio={
-                      (selectedCurrency === "ARS" && element.priceArs) ||
-                      (selectedCurrency === "USD" && element.priceUsd)
-                    }
-                    moneda={element.currency}
-                    nombre={element.title}
-                    url={element.link}
+    <div className="lateral-padding">
+      <motion.div className="search" {...animationProps}>
+        <SearchBar
+          onSearch={(search, quantity) => {
+            setData(null);
+            setSearchTerm(search);
+            setQuantity(quantity);
+          }}
+        />
+        {searchTerm &&
+          (loading ? (
+            <motion.div className="loading-container" {...animationProps}>
+              <p>Cargando resultados...</p>
+              <CircularProgress size={24} />
+            </motion.div>
+          ) : (
+            data &&
+            data.results && (
+              <>
+                <motion.div className="results-data" {...animationProps}>
+                  <ArsUsd
+                    onChangeCurrency={handleCurrencyChange}
                     selectedCurrency={selectedCurrency}
                   />
-                ))}
-              </div>
-            </>
-          )
-        ))}
+                  <h3 className="results-data--title">
+                    Resultados: <span>{data.results.length}</span>
+                  </h3>
+                  <h3 className="results-data--title">
+                    Precio mín.:{" "}
+                    <span>
+                      $
+                      {(selectedCurrency === "ARS" &&
+                        numberFormatter(data.ars.minimo)) ||
+                        (selectedCurrency === "USD" &&
+                          numberFormatter(data.usd.minimo))}
+                    </span>
+                  </h3>
+                  <h3 className="results-data--title">
+                    Precio máx.:{" "}
+                    <span>
+                      $
+                      {(selectedCurrency === "ARS" &&
+                        numberFormatter(data.ars.maximo)) ||
+                        (selectedCurrency === "USD" &&
+                          numberFormatter(data.usd.maximo))}
+                    </span>
+                  </h3>
+                  <h3 className="results-data--title">
+                    Precio promedio:{" "}
+                    <span>
+                      $
+                      {(selectedCurrency === "ARS" &&
+                        numberFormatter(data.ars.promedio)) ||
+                        (selectedCurrency === "USD" &&
+                          numberFormatter(data.usd.promedio))}
+                    </span>
+                  </h3>
+                </motion.div>
+                <motion.div className="results" {...animationProps}>
+                  {data.results.map((element) => (
+                    <Result
+                      key={element.id}
+                      precio={
+                        (selectedCurrency === "ARS" && element.priceArs) ||
+                        (selectedCurrency === "USD" && element.priceUsd)
+                      }
+                      moneda={element.currency}
+                      nombre={element.title}
+                      url={element.link}
+                      selectedCurrency={selectedCurrency}
+                    />
+                  ))}
+                </motion.div>
+              </>
+            )
+          ))}
+      </motion.div>
     </div>
   );
 }

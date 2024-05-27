@@ -1,3 +1,4 @@
+// generals
 @import "./abstracts/functions";
 @import "./abstracts/mixins";
 @import "./abstracts/variables";
@@ -7,12 +8,15 @@
 @import "./base/typography";
 
 // @import "components/";
-// @import "layout/";
-@import "./layout/arsUsd";
-@import "./layout/header";
 @import "./layout/result";
+@import "./layout/arsUsd";
+
+// @import "layout/";
+@import "./layout/header";
 
 // @import "sections/";
+
 // @import "views/";
 @import "./layout/login";
 @import "./layout/search";
+@import "./layout/product";

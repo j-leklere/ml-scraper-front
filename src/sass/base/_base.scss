@@ -57,6 +57,20 @@ input {
   overflow: auto;
 }
 
+.loading-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2rem;
+  color: $color-main;
+}
+
+.lateral-padding {
+  padding: 0 2rem;
+}
+
 /////TOSTIFY/////
 .Toastify__toast--error {
   font-size: 1.6rem !important;

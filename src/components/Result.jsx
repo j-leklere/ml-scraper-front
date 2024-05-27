@@ -18,9 +18,9 @@ export default function Result({
 }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
-  const saveProduct = async (data) => {
+  const saveSearchProduct = async (data) => {
     try {
-      const response = await mainService.saveProduct(data);
+      const response = await mainService.saveSearchProduct(data);
       console.log("Processing");
       console.log(response);
     } catch (e) {
@@ -34,7 +34,7 @@ export default function Result({
       nombre,
       url,
     };
-    saveProduct(JSON.stringify(dataToSend));
+    saveSearchProduct(JSON.stringify(dataToSend));
     setIsBookmarked(!isBookmarked);
   };
 

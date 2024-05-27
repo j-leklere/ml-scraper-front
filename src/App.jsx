@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Login from "./views/Login";
 import Search from "./views/Search";
 import axios from "axios";
+import Product from "./views/Product";
 
 // axios.defaults.headers.common["Access-Control-Allow-Methods"] = "GET,PUT,POST,DELETE,PATCH,OPTIONS";
 // axios.defaults.headers.common["Content-Type"] = "application/json";
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Search /> },
       { path: "/login", element: <Login /> },
+      { path: "/products", element: <Product /> },
       // { path: "*", element: <NotFound /> },
     ],
   },

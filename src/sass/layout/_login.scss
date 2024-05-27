@@ -27,7 +27,7 @@
 
   &-box {
     color: #000;
-    background-color: #fff;
+    background-color: #fcfcfc;
     border-radius: 1rem;
 
     padding: 2rem;
@@ -65,7 +65,7 @@
       }
 
       button {
-        color: #ffffff;
+        color: #fcfcfc;
         font-weight: 600;
         font-size: 1.6rem;
         background-color: $color-main;
@@ -84,7 +84,7 @@
         &:hover {
           cursor: pointer;
           color: $color-main;
-          background-color: #ffffff;
+          background-color: #fcfcfc;
         }
       }
     }
