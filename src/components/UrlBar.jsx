@@ -37,7 +37,7 @@ export default function UrlBar({ onSearch }) {
       <div className="productbar">
         <Input
           disableUnderline="true"
-          placeholder="Ingrese la url de un producto de MercadoLibre"
+          placeholder="Cargue un producto de MercadoLibre ingresando su URL"
           value={productInput}
           onChange={(e) => setProductInput(e.target.value)}
           onKeyUp={handleKeyPress}
