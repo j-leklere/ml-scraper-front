@@ -4,11 +4,12 @@ import { userActions } from "../store/store";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMagnifyingGlass,
   faRightFromBracket,
   faBoxesStacked,
+  faHome,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import { faBookmark, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   const login = useSelector((state) => state.user.login);
@@ -53,27 +54,26 @@ export default function Header() {
           </div>
         )}
         <nav className="header__nav">
-          <NavLink
-            to="/"
-            className="header__nav-link"
-            style={({ isActive }) => {
-              return {
-                backgroundColor: isActive ? "#f5f5f5" : "",
-                borderRadius: isActive ? "4px" : "",
-              };
-            }}
-          >
-            <div className="header-icon_container">
-              <FontAwesomeIcon
-                className="header-icon"
-                icon={faMagnifyingGlass}
-              />
-            </div>
-            Buscar
-          </NavLink>
-          {/* {login && (
+          {login && (
             <NavLink
-              to="/products"
+              to="/"
+              className="header__nav-link"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#f5f5f5" : "",
+                  borderRadius: isActive ? "4px" : "",
+                };
+              }}
+            >
+              <div className="header-icon_container">
+                <FontAwesomeIcon className="header-icon" icon={faHome} />
+              </div>
+              Inicio
+            </NavLink>
+          )}
+          {login && (
+            <NavLink
+              to="/saved-products"
               className="header__nav-link"
               style={({ isActive }) => {
                 return {
@@ -84,13 +84,53 @@ export default function Header() {
             >
               <div className="header-icon_container">
                 <FontAwesomeIcon
-                  className="header-icon header-icon_products"
+                  className="header-icon header-icon_saved__products"
                   icon={faBoxesStacked}
                 />
               </div>
               Productos
             </NavLink>
-          )} */}
+          )}
+          {login && (
+            <NavLink
+              to="/saved-results"
+              className="header__nav-link"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#f5f5f5" : "",
+                  borderRadius: isActive ? "4px" : "",
+                };
+              }}
+            >
+              <div className="header-icon_container">
+                <FontAwesomeIcon
+                  className="header-icon header-icon_saved__results"
+                  icon={faBookmark}
+                />
+              </div>
+              Guardados
+            </NavLink>
+          )}
+          {login && (
+            <NavLink
+              to="/saved-searchs"
+              className="header__nav-link"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "#f5f5f5" : "",
+                  borderRadius: isActive ? "4px" : "",
+                };
+              }}
+            >
+              <div className="header-icon_container">
+                <FontAwesomeIcon
+                  className="header-icon header-icon_saved__searchs"
+                  icon={faSearch}
+                />
+              </div>
+              Búsquedas
+            </NavLink>
+          )}
           {/*
           {login && (
             <NavLink

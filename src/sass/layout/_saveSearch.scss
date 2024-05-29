@@ -1,0 +1,42 @@
+.save-search {
+  margin-left: auto;
+
+  // height: 4rem;
+  padding: 1.6rem;
+  background-color: #fcfcfc;
+  border-radius: 1rem;
+
+  font-size: 1.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  &-modal {
+    margin-bottom: 5%;
+
+    &--fields {
+      display: flex;
+      gap: 2rem;
+      margin: 2.4rem 0;
+
+      label {
+        font-size: 1.2rem;
+      }
+
+      input {
+        font-size: 1.6rem;
+      }
+    }
+
+    &--btns {
+      button {
+        font-size: 1.2rem;
+        padding: 1.2rem 1.8rem;
+        border-radius: 0.5rem;
+      }
+    }
+    // save-search-modal--btns_btn__save
+  }
+}

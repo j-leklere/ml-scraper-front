@@ -4,20 +4,46 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+import SaveSearchIcon from "../components/SaveSearchIcon";
+import SaveSearchModal from "../components/SaveSearchModal";
 
-export default function SearchBar({ onSearch }) {
+const animationProps = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { type: "spring", stiffness: 260, damping: 20 },
+};
+
+export default function SearchBar({ onSearch, resultsShowing }) {
   const [searchInput, setSearchInput] = useState("");
   const [quantityInput, setQuantityInput] = useState("");
   const [actualSearchInput, setActualSearchInput] = useState("");
   const [actualQuantityInput, setActualQuantityInput] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const userId = localStorage.getItem("userId");
+
+  const handleSaveSearch = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const handleSave = (data) => {
+    console.log("Guardado:", data);
+  };
 
   const handleSearch = () => {
     if (!searchInput) {
-      toast.error("Ingrese búsqueda");
+      toast.error("Ingrese una búsqueda");
     }
+
     if (searchInput && !quantityInput) {
-      toast.error("Ingrese cantidad de resultados");
+      toast.error("Ingrese la cantidad de resultados");
     }
+
     if (
       searchInput.trim() !== "" &&
       quantityInput &&
@@ -25,6 +51,7 @@ export default function SearchBar({ onSearch }) {
         quantityInput !== actualQuantityInput)
     ) {
       onSearch(encodeURIComponent(searchInput), quantityInput);
+      setSaved(false);
     }
     setActualSearchInput(searchInput);
     setActualQuantityInput(quantityInput);
@@ -38,9 +65,15 @@ export default function SearchBar({ onSearch }) {
 
   return (
     <div className="search-container">
+      <motion.div
+        className={resultsShowing ? "show" : "hide"}
+        {...animationProps}
+      >
+        <SaveSearchIcon onSave={handleSaveSearch} saved={saved} />
+      </motion.div>
       <div className="searchbar">
         <Input
-          disableUnderline="true"
+          disableUnderline={true}
           placeholder="Ingrese su búsqueda"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
@@ -51,7 +84,7 @@ export default function SearchBar({ onSearch }) {
       </div>
       <div className="search-quantity">
         <Input
-          disableUnderline="true"
+          disableUnderline={true}
           placeholder="Cantidad"
           type="number"
           value={quantityInput}
@@ -65,6 +98,15 @@ export default function SearchBar({ onSearch }) {
         <FontAwesomeIcon className="searchbar-icon" icon={faMagnifyingGlass} />
       </div>
       <ToastContainer position="top-right" autoClose={2000} />
+      <SaveSearchModal
+        open={modalOpen}
+        handleClose={handleModalClose}
+        searchInput={actualSearchInput}
+        quantityInput={actualQuantityInput}
+        onSave={handleSave}
+        setSaved={setSaved}
+        userId={userId}
+      />
     </div>
   );
 }

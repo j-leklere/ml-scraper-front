@@ -18,7 +18,7 @@ const formatKeyFirstLetterOnly = (key) => {
   );
 };
 
-export default function Product() {
+export default function SavedProducts() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchUrl, setSearchUrl] = useState("");

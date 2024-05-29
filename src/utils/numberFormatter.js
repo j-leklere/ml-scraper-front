@@ -1,10 +1,16 @@
-export default function numberFormatter(number) {
-  if (typeof number !== "Number") {
-    number = Number(number);
-  }
+import { NumericFormat } from "react-number-format";
 
-  return number.toLocaleString("es-ES", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  });
+export default function numberFormatter(number) {
+  return (
+    <NumericFormat
+      value={number}
+      displayType="text"
+      thousandSeparator="."
+      decimalSeparator=","
+      decimalScale={2}
+      fixedDecimalScale={false}
+      allowLeadingZeros={false}
+      allowNegative={true}
+    />
+  );
 }

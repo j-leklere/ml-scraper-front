@@ -28,6 +28,18 @@ class MainService {
       console.error(err);
     });
   }
+
+  async login(username, password) {
+    return axios.post("/login", { username, password }).catch((err) => {
+      console.error(err);
+    });
+  }
+
+  async saveSearch(data) {
+    return axios.post("/save-search", data).catch((err) => {
+      console.error(err);
+    });
+  }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import mainService from "../services/mainService";
 
 const animationProps = {
   initial: { opacity: 0, scale: 0.9 },
@@ -18,43 +19,64 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //USUARIOS
-  const users = [
-    { id: 1, username: "Benjamin", password: "benja123" },
-    { id: 2, username: "Jero", password: "jero123" },
-    { id: 3, username: "Joa", password: "joa123" },
-  ];
+  // Usuarios hardcode
+  // const users = [
+  //   { id: 1, username: "Benjamin", password: "benja123" },
+  //   { id: 2, username: "Jero", password: "jero123" },
+  //   { id: 3, username: "Joa", password: "joa123" },
+  // ];
 
-  const formHandler = (e) => {
+  const formHandler = async (e) => {
     e.preventDefault();
-    let usernameAuth = false;
-    let passwordAuth = false;
-    let userIndex;
 
-    for (let i = 0; i < users.length; i++) {
-      if (username === users[i].username) {
-        usernameAuth = true;
-        if (password === users[i].password) {
-          passwordAuth = true;
-          userIndex = i;
-        }
-        console.log(users[i]);
-      }
-    }
+    // Hardcode
+    // let usernameAuth = false;
+    // let passwordAuth = false;
+    // let userIndex;
 
-    if (!usernameAuth) {
-      toast.error("El usuario no existe");
-    }
-    if (usernameAuth && !passwordAuth) {
-      toast.error("Error de credenciales");
-    }
-    if (usernameAuth && passwordAuth) {
-      dispatch(userActions.login());
-      dispatch(userActions.setActualUser(users[userIndex]));
-      toast.success("Login exitoso!");
-      setTimeout(() => {
+    // for (let i = 0; i < users.length; i++) {
+    //   if (username === users[i].username) {
+    //     usernameAuth = true;
+    //     if (password === users[i].password) {
+    //       passwordAuth = true;
+    //       userIndex = i;
+    //     }
+    //     console.log(users[i]);
+    //   }
+    // }
+
+    // if (!usernameAuth) {
+    //   toast.error("El usuario no existe");
+    // }
+    // if (usernameAuth && !passwordAuth) {
+    //   toast.error("Error de credenciales");
+    // }
+    // if (usernameAuth && passwordAuth) {
+    //   dispatch(userActions.login());
+    //   dispatch(userActions.setActualUser(users[userIndex]));
+    //   toast.success("Login exitoso!");
+    //   setTimeout(() => {
+    //     navigate("/");
+    //   }, 2000);
+    // }
+
+    try {
+      const response = await mainService.login(username, password);
+      if (response.data.success) {
+        const user = {
+          id: response.data.user_id,
+          username: username,
+        };
+        localStorage.setItem("userId", user.id);
+        localStorage.setItem("loginSuccess", "true");
+        dispatch(userActions.login());
+        dispatch(userActions.setActualUser(user));
         navigate("/");
-      }, 2000);
+      } else {
+        toast.error(response.data.error);
+      }
+    } catch (error) {
+      toast.error("Error de credenciales");
     }
   };
 
@@ -77,7 +99,7 @@ export default function LoginForm() {
         ></input>
         <button>Iniciar Sesión</button>
       </form>
-      <ToastContainer position="top-right" autoClose={1000} />
+      <ToastContainer position="top-right" autoClose={2000} />
     </motion.div>
   );
 }
