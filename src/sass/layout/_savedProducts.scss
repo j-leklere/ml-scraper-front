@@ -1,0 +1,36 @@
+.saved-products {
+  height: auto;
+  width: calc(100vw - 17.5vw);
+  padding: 5rem 10rem;
+  margin-left: auto;
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    &--product {
+      background-color: #fcfcfc;
+      padding: 2rem;
+      border-radius: 1rem;
+      font-size: 1.6rem;
+
+      &-id {
+      }
+      &-name {
+      }
+      &-url {
+      }
+      &-image {
+      }
+      &-price-ars {
+      }
+      &-price-usd {
+      }
+      &-discount {
+      }
+      &-currency {
+      }
+    }
+  }
+}

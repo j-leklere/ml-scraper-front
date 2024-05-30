@@ -6,9 +6,9 @@ import Header from "./components/Header";
 import Login from "./views/Login";
 import Search from "./views/Search";
 import axios from "axios";
+import OwnProducts from "./views/OwnProducts";
 import SavedProducts from "./views/SavedProducts";
-import SavedResults from "./views/SavedResults";
-import SavedSearchs from "./views/SavedSearchs";
+import SavedSearches from "./views/SavedSearches";
 
 // axios.defaults.headers.common["Access-Control-Allow-Methods"] = "GET,PUT,POST,DELETE,PATCH,OPTIONS";
 // axios.defaults.headers.common["Content-Type"] = "application/json";
@@ -22,9 +22,9 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Search /> },
       { path: "/login", element: <Login /> },
+      { path: "/own-products", element: <OwnProducts /> },
       { path: "/saved-products", element: <SavedProducts /> },
-      { path: "/saved-results", element: <SavedResults /> },
-      { path: "/saved-searchs", element: <SavedSearchs /> },
+      { path: "/saved-searches", element: <SavedSearches /> },
       // { path: "*", element: <NotFound /> },
     ],
   },

@@ -1,0 +1,34 @@
+.saved-searches {
+  height: auto;
+  width: calc(100vw - 17.5vw);
+  padding: 5rem 10rem;
+  margin-left: auto;
+
+  &-container {
+  }
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    &--search {
+      background-color: #fcfcfc;
+      padding: 2rem;
+      border-radius: 1rem;
+      font-size: 1.6rem;
+
+      &-id {
+      }
+      &-name {
+      }
+      &-term {
+      }
+      &-quantity {
+      }
+      &-last-time-searched {
+      }
+      &-comparison-product {
+      }
+    }
+  }
+}

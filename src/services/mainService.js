@@ -40,6 +40,30 @@ class MainService {
       console.error(err);
     });
   }
+
+  async getSavedSearchesByUser(userId) {
+    return axios
+      .get("/get-searches", { params: { user_id: userId } })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  async getOwnProductsByUser(userId) {
+    return axios
+      .get("/get-own-products", { params: { user_id: userId } })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  async getSavedProductsByUser(userId) {
+    return axios
+      .get("/get-saved-products", { params: { user_id: userId } })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

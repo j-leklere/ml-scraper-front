@@ -14,7 +14,7 @@
     border-radius: 1rem;
     // box-shadow: 0 0 10rem #eeeeee;
     margin: auto;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 
   &bar {
@@ -113,3 +113,60 @@
   visibility: hidden;
   margin-right: 1rem;
 }
+
+.saves-searches-list {
+  width: 65%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-radius: 1rem;
+  margin: auto;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.saves-searches-list-box {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.saves-searches-list-box::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.saves-searches-list-box--chip {
+  span {
+    font-size: 1.4rem;
+  }
+}
+
+.navigation-button {
+  position: absolute;
+  z-index: 1;
+}
+
+.navigation-button:first-of-type {
+  left: 0;
+}
+
+.navigation-button:last-of-type {
+  right: 0;
+}
+
+// .fade-effect {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   width: 50px;
+//   background: linear-gradient(
+//     to left,
+//     rgba(255, 255, 255, 1),
+//     rgba(255, 255, 255, 0)
+//   );
+//   pointer-events: none;
+// }

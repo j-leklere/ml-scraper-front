@@ -38,8 +38,6 @@ export default function Result({
     setIsBookmarked(!isBookmarked);
   };
 
-  console.log(selectedCurrency);
-
   return (
     <a
       href={url}
@@ -58,11 +56,12 @@ export default function Result({
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </p>
 
+        {/* Proximamente */}
         {/* <FontAwesomeIcon
-        className="result-save--icon"
-        icon={isBookmarked ? fasBookmark : farBookmark}
-        onClick={toggleBookmark}
-      /> */}
+          className="result-save--icon"
+          icon={isBookmarked ? fasBookmark : farBookmark}
+          onClick={toggleBookmark}
+        /> */}
       </div>
     </a>
   );

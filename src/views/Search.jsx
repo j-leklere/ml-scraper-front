@@ -8,12 +8,8 @@ import { CircularProgress } from "@mui/material";
 import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const animationProps = {
-  initial: { opacity: 0, scale: 0.9 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { type: "spring", stiffness: 260, damping: 20 },
-};
+import SavedSearchesList from "../components/SavedSearchesList";
+import { animationProps } from "../utils/animationProps";
 
 export default function Search() {
   const [data, setData] = useState(null);
@@ -22,16 +18,22 @@ export default function Search() {
   const [quantity, setQuantity] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState("ARS");
   const [resultsShowing, setResultsShowing] = useState(false);
+  const userId = localStorage.getItem("userId");
+  const [savedSearches, setSavedSearches] = useState([]);
 
   const handleCurrencyChange = (currency) => {
     setSelectedCurrency(currency);
   };
 
+  const handleSearchSelect = (search) => {
+    console.log(search);
+    setSearchTerm(search.term);
+    setQuantity(search.results);
+  };
+
   useEffect(() => {
     if (localStorage.getItem("loginSuccess") === "true") {
-      setTimeout(() => {
-        toast.success("Login exitoso!");
-      }, 1);
+      toast.success("Login exitoso!");
       localStorage.removeItem("loginSuccess");
     }
   }, []);
@@ -61,6 +63,25 @@ export default function Search() {
     fetchData();
   }, [searchTerm, quantity]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (userId) {
+        // setLoading(true);
+        try {
+          const res = await mainService.getSavedSearchesByUser(userId);
+          if (res.status === 200) {
+            setSavedSearches(res.data.data);
+          }
+        } catch (error) {
+          console.error(error);
+          setSavedSearches(null);
+        }
+        // setLoading(false);
+      }
+    };
+    fetchData();
+  }, [userId]);
+
   return (
     <div className="lateral-padding">
       <motion.div className="search" {...animationProps}>
@@ -72,6 +93,12 @@ export default function Search() {
           }}
           resultsShowing={resultsShowing}
         />
+        {savedSearches.length > 0 && (
+          <SavedSearchesList
+            savedSearches={savedSearches}
+            onSearchSelect={handleSearchSelect}
+          />
+        )}
         {searchTerm &&
           (loading ? (
             <motion.div className="loading-container" {...animationProps}>

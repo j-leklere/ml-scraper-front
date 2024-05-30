@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import mainService from "../services/mainService";
 import { motion } from "framer-motion";
 import { CircularProgress } from "@mui/material";
-import numberFormatter from "../utils/numberFormatter";
+import SavedSearch from "../components/SavedSearch";
 import { animationProps } from "../utils/animationProps";
-import SavedProduct from "../components/SavedProduct";
 
-export default function SavedProducts() {
+export default function SavedSearches() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const userId = localStorage.getItem("userId");
@@ -16,7 +15,7 @@ export default function SavedProducts() {
       if (userId) {
         setLoading(true);
         try {
-          const res = await mainService.getSavedProductsByUser(userId);
+          const res = await mainService.getSavedSearchesByUser(userId);
           if (res.status === 200) {
             setData(res.data.data);
           }
@@ -31,27 +30,25 @@ export default function SavedProducts() {
   }, [userId]);
 
   return (
-    <div className="saved-products lateral-padding">
-      <div className="products lateral-padding">
+    <div className="saved-searches lateral-padding">
+      <div className="saved-searches-container lateral-padding">
         {loading && (
           <motion.div className="loading-container" {...animationProps}>
-            <p>Cargando resultados...</p>
+            <p>Cargando búsquedas guardadas...</p>
             <CircularProgress size={24} />
           </motion.div>
         )}
         {data && (
-          <motion.div className="saved-products-list" {...animationProps}>
+          <motion.div className="saved-searches-list" {...animationProps}>
             {data.map((search) => (
-              <SavedProduct
+              <SavedSearch
                 key={search.id}
                 id={search.id}
                 name={search.name}
-                url={search.url}
-                image_url={search.image_url}
-                price_ars={search.price_ars}
-                price_usd={search.price_usd}
-                discount={search.discount}
-                currency={search.currency}
+                term={search.term}
+                quantity={search.results}
+                lastTimeSearched={search.last_searched_at}
+                comparisonProduct={search.product ? search.product.name : null}
               />
             ))}
           </motion.div>

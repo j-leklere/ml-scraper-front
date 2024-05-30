@@ -73,7 +73,7 @@ export default function Header() {
           )}
           {login && (
             <NavLink
-              to="/saved-products"
+              to="/own-products"
               className="header__nav-link"
               style={({ isActive }) => {
                 return {
@@ -93,7 +93,7 @@ export default function Header() {
           )}
           {login && (
             <NavLink
-              to="/saved-results"
+              to="/saved-products"
               className="header__nav-link"
               style={({ isActive }) => {
                 return {
@@ -113,7 +113,7 @@ export default function Header() {
           )}
           {login && (
             <NavLink
-              to="/saved-searchs"
+              to="/saved-searches"
               className="header__nav-link"
               style={({ isActive }) => {
                 return {

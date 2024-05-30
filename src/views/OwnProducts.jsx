@@ -4,12 +4,7 @@ import mainService from "../services/mainService";
 import { motion } from "framer-motion";
 import { CircularProgress } from "@mui/material";
 import numberFormatter from "../utils/numberFormatter";
-
-const animationProps = {
-  initial: { opacity: 0, scale: 0.9 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { type: "spring", stiffness: 260, damping: 20 },
-};
+import { animationProps } from "../utils/animationProps";
 
 const formatKeyFirstLetterOnly = (key) => {
   const formattedKey = key.replace(/([A-Z])/g, " $1");
@@ -18,19 +13,20 @@ const formatKeyFirstLetterOnly = (key) => {
   );
 };
 
-export default function SavedProducts() {
+export default function OwnProducts() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchUrl, setSearchUrl] = useState("");
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const fetchData = async () => {
-      if (searchUrl) {
+      if (userId) {
         setLoading(true);
         try {
-          const res = await mainService.scrapByProductUrl(searchUrl);
+          const res = await mainService.getOwnProductsByUser(userId);
           if (res.status === 200) {
-            setData(res.data);
+            setData(res.data.data);
           }
         } catch (error) {
           console.error(error);
@@ -40,7 +36,7 @@ export default function SavedProducts() {
       }
     };
     fetchData();
-  }, [searchUrl]);
+  }, [userId]);
 
   return (
     <div className="lateral-padding">
@@ -59,7 +55,7 @@ export default function SavedProducts() {
             <CircularProgress size={24} />
           </motion.div>
         )}
-        {data && (
+        {/* {data && (
           <motion.div className="product-details" {...animationProps}>
             <h2 className="product-details--name">{data.nombre}</h2>
             <p className="product-details--seller">Vendedor: {data.vendedor}</p>
@@ -89,7 +85,7 @@ export default function SavedProducts() {
               )}
             </ul>
           </motion.div>
-        )}
+        )} */}
       </div>
     </div>
   );

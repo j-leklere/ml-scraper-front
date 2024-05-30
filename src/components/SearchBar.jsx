@@ -7,12 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import SaveSearchIcon from "../components/SaveSearchIcon";
 import SaveSearchModal from "../components/SaveSearchModal";
-
-const animationProps = {
-  initial: { opacity: 0, scale: 0.9 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { type: "spring", stiffness: 260, damping: 20 },
-};
+import { animationProps } from "../utils/animationProps";
 
 export default function SearchBar({ onSearch, resultsShowing }) {
   const [searchInput, setSearchInput] = useState("");
