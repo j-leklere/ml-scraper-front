@@ -3,8 +3,8 @@ import UrlBar from "../components/UrlBar";
 import mainService from "../services/mainService";
 import { motion } from "framer-motion";
 import { CircularProgress } from "@mui/material";
-import numberFormatter from "../utils/numberFormatter";
 import { animationProps } from "../utils/animationProps";
+import numberFormatter from "../utils/numberFormatter";
 
 const formatKeyFirstLetterOnly = (key) => {
   const formattedKey = key.replace(/([A-Z])/g, " $1");
@@ -15,9 +15,28 @@ const formatKeyFirstLetterOnly = (key) => {
 
 export default function OwnProducts() {
   const [data, setData] = useState(null);
+  const [scrapedData, setScrapedData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchUrl, setSearchUrl] = useState("");
   const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const scrapProductDetails = async () => {
+      if (searchUrl) {
+        try {
+          const res = await mainService.scrapByProductUrl(searchUrl);
+          if (res.data.success === true) {
+            setScrapedData(res.data.data);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    };
+    scrapProductDetails();
+  }, [searchUrl]);
+
+  console.log(scrapedData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +45,7 @@ export default function OwnProducts() {
         try {
           const res = await mainService.getOwnProductsByUser(userId);
           if (res.status === 200) {
-            setData(res.data.data);
+            setData(res);
           }
         } catch (error) {
           console.error(error);
@@ -55,28 +74,32 @@ export default function OwnProducts() {
             <CircularProgress size={24} />
           </motion.div>
         )}
-        {/* {data && (
+        {scrapedData && (
           <motion.div className="product-details" {...animationProps}>
-            <h2 className="product-details--name">{data.nombre}</h2>
-            <p className="product-details--seller">Vendedor: {data.vendedor}</p>
+            <h2 className="product-details--name">{scrapedData.nombre}</h2>
+            <p className="product-details--seller">
+              Vendedor: {scrapedData.vendedor}
+            </p>
             <div className="product-details--price">
-              {data.precio.precioPrevio != null ? (
+              {scrapedData?.precio?.precioPrevio != null ? (
                 <>
                   <p>
-                    Precio sin descuento: {data.precio.moneda}{" "}
-                    {numberFormatter(data.precio.precioPrevio)}
+                    Precio sin descuento: {scrapedData?.precio?.moneda}{" "}
+                    {numberFormatter(scrapedData?.precio?.precioPrevio)}
                   </p>
-                  <p>Descuento: {numberFormatter(data.precio.descuento)}%</p>
+                  <p>
+                    Precio con descuento: {numberFormatter(scrapedData.precio.precioActual)} <span>({numberFormatter(scrapedData.precio.descuento)}%)</span>
+                  </p>
                 </>
               ) : (
                 <p>
-                  Precio: {data.precio.moneda}{" "}
-                  {numberFormatter(data.precio.precioActual)}
+                  Precio: {scrapedData?.precio?.moneda}{" "}
+                  {numberFormatter(scrapedData.precio.precioActual)}
                 </p>
               )}
             </div>
             <ul>
-              {Object.entries(data.caracteristicas).map(
+              {Object.entries(scrapedData.caracteristicas).map(
                 ([key, value], index) => (
                   <li key={index}>
                     <strong>{formatKeyFirstLetterOnly(key)}:</strong> {value}
@@ -85,7 +108,7 @@ export default function OwnProducts() {
               )}
             </ul>
           </motion.div>
-        )} */}
+        )}
       </div>
     </div>
   );
