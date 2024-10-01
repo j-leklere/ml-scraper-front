@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import UrlBar from "../components/UrlBar";
 import mainService from "../services/mainService";
 import { motion } from "framer-motion";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, IconButton } from "@mui/material";
 import { animationProps } from "../utils/animationProps";
 import numberFormatter from "../utils/numberFormatter";
+import SaveIcon from "@mui/icons-material/Save";
+import OwnProduct from "../components/OwnProduct";
 
 const formatKeyFirstLetterOnly = (key) => {
   const formattedKey = key.replace(/([A-Z])/g, " $1");
@@ -36,7 +38,9 @@ export default function OwnProducts() {
     scrapProductDetails();
   }, [searchUrl]);
 
-  console.log(scrapedData);
+  const handleClick = () => {
+    console.log("Saved!");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,37 +80,7 @@ export default function OwnProducts() {
         )}
         {scrapedData && (
           <motion.div className="product-details" {...animationProps}>
-            <h2 className="product-details--name">{scrapedData.nombre}</h2>
-            <p className="product-details--seller">
-              Vendedor: {scrapedData.vendedor}
-            </p>
-            <div className="product-details--price">
-              {scrapedData?.precio?.precioPrevio != null ? (
-                <>
-                  <p>
-                    Precio sin descuento: {scrapedData?.precio?.moneda}{" "}
-                    {numberFormatter(scrapedData?.precio?.precioPrevio)}
-                  </p>
-                  <p>
-                    Precio con descuento: {numberFormatter(scrapedData.precio.precioActual)} <span>({numberFormatter(scrapedData.precio.descuento)}%)</span>
-                  </p>
-                </>
-              ) : (
-                <p>
-                  Precio: {scrapedData?.precio?.moneda}{" "}
-                  {numberFormatter(scrapedData.precio.precioActual)}
-                </p>
-              )}
-            </div>
-            <ul>
-              {Object.entries(scrapedData.caracteristicas).map(
-                ([key, value], index) => (
-                  <li key={index}>
-                    <strong>{formatKeyFirstLetterOnly(key)}:</strong> {value}
-                  </li>
-                )
-              )}
-            </ul>
+            <OwnProduct scrapedData={scrapedData} />
           </motion.div>
         )}
       </div>

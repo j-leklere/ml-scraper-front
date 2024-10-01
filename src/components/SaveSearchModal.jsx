@@ -79,7 +79,7 @@ const SaveSearchModal = ({
           fontWeight: "600",
         }}
       >
-        Guardar Búsqueda
+        Guardar búsqueda
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(handleSave)}>

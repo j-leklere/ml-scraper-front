@@ -2,38 +2,30 @@ import React, { useEffect, useState } from "react";
 import mainService from "../services/mainService";
 import { motion } from "framer-motion";
 import { CircularProgress } from "@mui/material";
-import numberFormatter from "../utils/numberFormatter";
 import { animationProps } from "../utils/animationProps";
 import SavedProduct from "../components/SavedProduct";
+import { useQuery } from "@tanstack/react-query";
 
 export default function SavedProducts() {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
   const userId = localStorage.getItem("userId");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (userId) {
-        setLoading(true);
-        try {
-          const res = await mainService.getSavedProductsByUser(userId);
-          if (res.status === 200) {
-            setData(res.data.data);
-          }
-        } catch (error) {
-          console.error(error);
-          setData(null);
-        }
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [userId]);
+  const { data: queryData, isLoading } = useQuery({
+    queryKey: ["savedProducts", userId],
+    queryFn: () => mainService.getSavedProductsByUser(userId),
+    enabled: !!userId,
+    onSuccess: (res) => {
+      setData(res.data.data);
+    },
+    onError: () => {
+      setData(null);
+    },
+  });
 
   return (
     <div className="saved-products lateral-padding">
       <div className="products lateral-padding">
-        {loading && (
+        {isLoading && (
           <motion.div className="loading-container" {...animationProps}>
             <p>Cargando resultados...</p>
             <CircularProgress size={24} />
